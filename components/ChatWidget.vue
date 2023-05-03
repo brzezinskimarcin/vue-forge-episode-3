@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import type { CreateChatCompletionResponse } from "openai";
-import { Message, User } from "~~/types";
+import { nanoid } from "nanoid";
+import { Message, User } from "@/types";
+
+const { data, state, error, fetchResponse } = useChatGPT('customerSupport');
 
 const me = ref<User>({
   id: "user",
@@ -16,30 +18,35 @@ const bot = ref<User>({
 const users = computed(() => [me.value, bot.value]);
 
 const messages = ref<Message[]>([]);
-const usersTyping = ref<User[]>([]);
+const usersTyping = computed(() => state.value === 'loading' ? [bot.value] : []);
 
 async function handleNewMessage(message: Message) {
   messages.value.push(message);
-  usersTyping.value.push(bot.value);
 
-  const response = await $fetch<CreateChatCompletionResponse>('/api/ai', {
-    method: 'POST',
-    body: messages.value.map((message) => ({
+  await fetchResponse({
+    messages: messages.value.map((message) => ({
       role: 'user',
       content: message.text
     }))
   });
-  const messageFromApi = response.choices?.[0].message?.content;
 
-  if (messageFromApi) {
+  if (data.value) {
     messages.value.push({
-      id: response.id,
+      id: nanoid(),
       userId: bot.value.id,
       createdAt: new Date(),
-      text: messageFromApi
+      text: data.value
     });
   }
-  usersTyping.value = [];
+
+  if (error.value) {
+    messages.value.push({
+      id: nanoid(),
+      userId: bot.value.id,
+      createdAt: new Date(),
+      text: error.value.message
+    });
+  }
 }
 </script>
 

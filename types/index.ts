@@ -1,3 +1,5 @@
+import { ChatCompletionRequestMessage } from "openai";
+
 export interface User {
   id: string;
   avatar: string;
@@ -10,4 +12,24 @@ export interface Message {
   text: string;
 }
 export type AsyncState = null | "loading" | "error" | "complete";
-export type SocialPlatforms = "twitter" | "facebook";
+
+export interface CustomerSupport {
+  type: 'customerSupport';
+  messages: ChatCompletionRequestMessage[];
+}
+
+export interface UrlForm {
+  url: string;
+  temperature: number;
+}
+
+export type TwitterPost = UrlForm & {
+  type: 'twitterPost';
+  
+}
+
+export type FacebookPost = UrlForm & {
+  type: 'facebookPost';
+}
+
+export type ChatGPTRequest = CustomerSupport | TwitterPost | FacebookPost;
