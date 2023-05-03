@@ -77,7 +77,7 @@ watch(open, () => {
             <IconMinimize />
           </button>
         </header>
-        <main class="p-4 overflow-y-auto max-h-[200px]" ref="messagesRef">
+        <main class="p-4 overflow-y-auto max-h-[80vh]" ref="messagesRef">
           <ChatMessage
             v-for="message in messages"
             :key="message.id"
