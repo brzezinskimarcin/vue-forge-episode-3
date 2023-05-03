@@ -5,4 +5,5 @@ export default defineNuxtConfig({
     OPENAI_API_KEY: "",
   },
   ssr: false,
+  css: ['~/assets/main.css']
 });
