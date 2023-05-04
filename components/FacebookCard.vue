@@ -38,6 +38,7 @@ async function openFacebookPost() {
     :state="state"
     :error="error"
     title="Facebook"
+    empty-text="Import an article to generate a facebook post"
   >
     <div
       v-if="body.trim()"

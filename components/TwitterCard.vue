@@ -34,6 +34,7 @@ const newPostURL = computed(() => `https://twitter.com/intent/tweet?text=${encod
     :max-length="MAX_LENGTH"
     :error="error"
     title="Twitter"
+    empty-text="Import an article to generate a tweet"
   >
     <div
       v-if="body.trim()"
