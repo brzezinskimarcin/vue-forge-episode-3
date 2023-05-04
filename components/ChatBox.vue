@@ -59,6 +59,7 @@ watch(open, () => {
       <button
         v-if="!open"
         class="bg-teal-200 p-2 rounded-lg"
+        data-testid="open-chat-button"
         @click="open = true"
       >
         <IconChat class="h-8 w-8" />
@@ -66,6 +67,7 @@ watch(open, () => {
       <div
         v-if="open"
         class="bg-teal-100 w-[400px] rounded-lg overflow-hidden"
+        data-testid="chat-box"
       >
         <header
           class="bg-teal-300 p-4 flex justify-between items-center"
@@ -95,6 +97,7 @@ watch(open, () => {
             :message="message"
             :mine="message.userId === me.id"
             class="mb-2"
+            data-testid="chat-message"
           />
           <ChatMessage
             v-for="user in usersTyping"
@@ -110,6 +113,7 @@ watch(open, () => {
             class="input w-full"
             type="text"
             placeholder="Type your message"
+            data-testid="chat-input"
             @keypress.enter="addNewMessage"
           />
         </footer>

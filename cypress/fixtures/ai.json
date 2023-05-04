@@ -1,0 +1,21 @@
+{
+  "id": "chatcmpl-7CVnJz9Ctko9yiYt7R5K3SwAeW3Nz",
+  "object": "chat.completion",
+  "created": 1683216509,
+  "model": "gpt-3.5-turbo-0301",
+  "usage": {
+    "prompt_tokens": 116,
+    "completion_tokens": 62,
+    "total_tokens": 178
+  },
+  "choices": [
+    {
+      "message": {
+        "role": "assistant",
+        "content": "The 'AI-powered Social Media Post Generator' is an application that can generate social media posts automatically."
+      },
+      "finish_reason": "stop",
+      "index": 0
+    }
+  ]
+}

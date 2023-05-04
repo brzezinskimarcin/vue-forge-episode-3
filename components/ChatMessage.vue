@@ -24,7 +24,7 @@ const createdAgo = useTimeAgo(() => props.message!.createdAt);
         {{ createdAgo }}
       </time>
     </div>
-    <div :class="['chat-bubble prose prose-sm py-0', mine ? 'bg-teal-200' : 'bg-teal-400']">
+    <div data-testid="chat-message-text" :class="['chat-bubble prose prose-sm py-0', mine ? 'bg-teal-200' : 'bg-teal-400']">
       <slot>
         <Markdown v-if="message" :source="message.text" />
       </slot>
