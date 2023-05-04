@@ -8,7 +8,7 @@ describe('example to-do app', () => {
   it('opens the chat box when clicking on the chat icon in the bottom right-hand corner', () => {
     cy.get(`[data-testid="chat-box"]`).should('not.exist');
     cy.get('[data-testid="open-chat-button"]').click();
-    cy.get(`[data-testid="chat-box"]`).should('exist');
+    cy.get(`[data-testid="chat-box"]`).should('be.visible');
   });
 
   it('sends a message to the chatbot when typing in the chat box input and pressing enter', () => {
@@ -18,7 +18,7 @@ describe('example to-do app', () => {
     cy.get('[data-testid="chat-input"]').type(`${prompt}{enter}`);
     cy
       .get('[data-testid="chat-message"]:nth-of-type(1) [data-testid="chat-message-text"]')
-      .should("contain.text", prompt);
+      .should("contain.text", prompt); 
   });
 
   it('displays the chatbot response correctly in the chatbox', async () => {
