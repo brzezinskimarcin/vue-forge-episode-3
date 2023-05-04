@@ -34,7 +34,7 @@ watch(
 </script>
 
 <template>
-  <div class="card shadow-xl border-t-4 border-accent">
+  <div class="card shadow-xl border-t-4 border-accent mx-4">
     <div class="card-body">
       <h2 class="card-title">{{ title }}</h2>
       <div class="mb-4 mt-2">

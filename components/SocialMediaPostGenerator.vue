@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { UrlForm } from '@/types';
 
+const route = useRoute();
 const form = ref<UrlForm>({
-  url: '',
+  url: route.query.url as string || '',
   temperature: 1,
 });
 
@@ -36,11 +37,18 @@ async function fetchAllData(updatedForm: UrlForm) {
   ]);
   fetchImagesData(form.value);
 }
+
+onMounted(() => {
+  if (!form.value.url || route.query.extension !== 'true') {
+    return;
+  }
+  fetchAllData(form.value);
+});
 </script>
 
 <template>
-  <h1 class="text-4xl my-10">Social Media Post Generator</h1>
-  <ImportUrlForm v-bind="form" @submit="fetchAllData" />
+  <h1 v-if="route.query.extension !== 'true'" class="text-4xl my-10">Social Media Post Generator</h1>
+  <ImportUrlForm v-if="route.query.extension !== 'true'" v-bind="form" @submit="fetchAllData" />
   <div class="mt-10 flex flex-col gap-10 mb-10">
     <TwitterCard
       v-model:body="twitterBody"

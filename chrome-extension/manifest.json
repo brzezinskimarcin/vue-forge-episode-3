@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "AI-powered Social Media Post Generator",
+  "description": "Tool that generates Twitter or Facebook posts using an article URL. It uses AI technology to create relevant and engaging social media posts",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "version": "1.0",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon48.png"
+  },
+  "permissions": [
+    "tabs"
+  ]
+}
